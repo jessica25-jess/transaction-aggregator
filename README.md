@@ -32,30 +32,18 @@ mvn spring-boot:run
 ```
 
 App runs at: 
-http://localhost:8080
+http://localhost:8081
 ---
 ## API Endpoints
-Fetch transactions from external systems.
+### 1. Aggregate Transactions
+Fetches transactions from multiple sources, categorizes them, and stores them in the database.
 ```
 POST /api/transactions/aggregate?customerId=123
 ```
-## Get Transactions
-Retrieve stored transactions for a customer.
+### 2.  Get Transactions
+Retrieve stored transactions for a specific customer.
 ```
 GET /api/transactions?customerId=123
 ```
-## Mock APIs
-The project includes mock endpoints to stimulate external financial systems.
 
-### Bank API
-```
-GET /mock/bank/transactions/{customerId}
-```
-### Credit Card API
-```
-GET /mock/creditcard/transactions/{customerId}
-```
-### Payment App API
-```
-GET /mock/payment/transactions/{customerId}
-```
+
