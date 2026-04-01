@@ -2,33 +2,40 @@ package com.jessica.transactions.controller;
 
 import com.jessica.transactions.model.Transaction;
 import com.jessica.transactions.service.TransactionService;
-import com.jessica.transactions.service.AggregationService;
+import com.jessica.transactions.service.AnalyticsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/transactions")
 public class TransactionController {
 
     private final TransactionService service;
-    private final AggregationService aggregationService;
+    private final AnalyticsService analyticsService;
 
     public TransactionController(TransactionService service,
-                                 AggregationService aggregationService){
+                                 AnalyticsService analyticsService){
         this.service = service;
-        this.aggregationService = aggregationService;
+        this.analyticsService = analyticsService;
     }
-// Get stored transactions
+
+    @PostMapping
+    public Transaction createTransaction(@RequestBody Transaction transaction){
+        return service.createTransaction(transaction);
+    }
+
     @GetMapping
-    public List<Transaction>getTransactions(@RequestParam String customerId){
+    public List<Transaction> getTransactions(
+            @RequestParam String customerId){
         return service.getTransactions(customerId);
     }
-    // Trigger aggregation from all sources
-    @PostMapping("/aggregate")
-    public String aggregate(@RequestParam String customerId){
-        aggregationService.aggregate(customerId);
-        return "Aggregation completed successfully";
+
+    @GetMapping("/summary")
+    public Map<String, Double> summary(
+            @RequestParam String customerId){
+        return analyticsService.totalByCategory(customerId);
     }
 }
 
