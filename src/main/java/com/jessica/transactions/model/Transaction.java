@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Transaction{
+@Table(name = "transactions")
+public class Transaction {
 
     @Id
     private String id;
@@ -18,40 +19,24 @@ public class Transaction{
 
     public Transaction(){}
 
-    public String getId(){
-        return id;}
-    public void setId(String id) {
-        this.id = id; }
+    public String getId(){ return id;}
+    public void setId(String id){ this.id = id;}
 
-    public String getCustomerId() {
-        return customerId; }
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId; }
+    public String getCustomerId(){ return customerId;}
+    public void setCustomerId(String customerId){ this.customerId = customerId;}
 
-    public String getMerchant() {
-        return merchant;}
-    public void setMerchant(String merchant) {
-        this.merchant = merchant;}
+    public String getMerchant(){ return merchant;}
+    public void setMerchant(String merchant){ this.merchant = merchant;}
 
-    public Double getAmount() {
-        return amount;}
-    public void setAmount(Double amount) {
-        this.amount = amount;}
+    public Double getAmount(){ return amount;}
+    public void setAmount(Double amount){ this.amount = amount;}
 
-    public String getCategory() {
-        return category;}
-    public void setCategory(String category) {
-        this.category = category;}
+    public String getCategory(){ return category;}
+    public void setCategory(String category){ this.category = category;}
 
-    public String getSource() {
-        return source;}
-    public void setSource(String source) {
-        this.source = source;}
+    public String getSource(){ return source;}
+    public void setSource(String source){ this.source = source;}
 
-    public LocalDate getDate(){
-        return date;
-    }
-    public void setDate(LocalDate date){
-        this.date = date; }
-    }
-
+    public LocalDate getDate(){ return date;}
+    public void setDate(LocalDate date){ this.date = date;}
+}
